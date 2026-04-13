@@ -1,3 +1,2 @@
 # gestao-educador-fisico
-
-# em fase de desenvolvimento
+Em fase de desenvolvimento
