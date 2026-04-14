@@ -1,81 +1,72 @@
+```gitignore
 # =========================
-# DEPENDÊNCIAS
+# 🐍 PYTHON
+# =========================
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Ambiente virtual
+.venv/
+venv/
+env/
+ENV/
+
+# Variáveis de ambiente
+.env
+
+# Logs
+*.log
+
+# Build / distribuição
+build/
+dist/
+*.egg-info/
+
+# Cache / testes
+.pytest_cache/
+.coverage
+htmlcov/
+
+# =========================
+# 🗄️ DATABASE
+# =========================
+*.db
+*.sqlite3
+
+# =========================
+# 🌐 JAVASCRIPT / NODE
 # =========================
 node_modules/
-.pnp
-.pnp.js
 
-# =========================
-# NEXT.JS
-# =========================
-.next/
-out/
-build/
-
-# =========================
-# LOGS
-# =========================
-logs
-*.log
+# Logs
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-pnpm-debug.log*
 
-# =========================
-# AMBIENTE (IMPORTANTE)
-# =========================
-.env
+# Build
+dist/
+build/
+
+# Env frontend
 .env.local
 .env.development.local
 .env.test.local
 .env.production.local
 
 # =========================
-# CACHE
+# 💻 VSCODE
 # =========================
-.cache/
-.parcel-cache
-.npm
-.eslintcache
-.stylelintcache
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+
+# Histórico local
+.history/
 
 # =========================
-# BUILD / DIST
-# =========================
-dist/
-coverage/
-.nyc_output
-
-# =========================
-# SISTEMA OPERACIONAL
+# 🧹 GERAL
 # =========================
 .DS_Store
 Thumbs.db
-
-# =========================
-# IDE / EDITORES
-# =========================
-.vscode/
-.idea/
-.vscode-test
-
-# =========================
-# TYPESCRIPT
-# =========================
-*.tsbuildinfo
-next-env.d.ts
-
-# =========================
-# OUTROS
-# =========================
-*.pem
-*.pid
-*.seed
-*.tgz
-.yarn-integrity
-
-# =========================
-# VERCEL
-# =========================
-.vercel
+```

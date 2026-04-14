@@ -1,0 +1,10 @@
+fastapi
+uvicorn
+python-dotenv
+mysql-connector-python
+sqlalchemy
+pydantic
+passlib[bcrypt]
+python-jose
+
+# Utilizar o comando pip install -r requirements.txt no terminal para instalar as dependências listadas neste arquivo.
