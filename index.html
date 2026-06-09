@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Health Hub</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <nav class="navbar">
+    <div class="container">
+      <a href="#" class="logo" onclick="navigate('home'); return false;">
+        <div class="logo-icon">+</div>
+        <span>My <span class="brand-main">Health</span> Hub</span>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="#" data-page="home" onclick="navigate('home'); return false;">Início</a></li>
+        <li><a href="#" data-page="professionals" onclick="navigate('professionals'); return false;">Profissionais</a></li>
+        <li><a href="#" data-page="services" onclick="navigate('services'); return false;">Serviços</a></li>
+        <li><a href="#" data-page="appointments" onclick="navigate('appointments'); return false;">Agendamentos</a></li>
+        <li><a href="#" data-page="dashboard" onclick="navigate('dashboard'); return false;">Dashboard</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <div id="nav-guest" class="flex items-center gap-2">
+          <a href="#" class="btn btn-outline" onclick="navigate('login'); return false;">Entrar</a>
+          <a href="#" class="btn btn-primary" onclick="navigate('register'); return false;">Cadastrar</a>
+        </div>
+
+        <div id="nav-user" class="nav-user hidden">
+          <div class="avatar-sm" id="nav-user-initials">JS</div>
+          <div>
+            <div id="nav-user-name" style="font-weight:600;font-size:0.88rem;">João Silva</div>
+            <a href="#" style="font-size:0.78rem;color:var(--text-muted);text-decoration:none;" onclick="handleLogout(); return false;">Sair</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <!-- HOME -->
+    <section id="page-home" class="page active">
+      <div class="hero">
+        <div class="container hero-inner">
+          <div class="hero-grid">
+            <div>
+              <div class="hero-eyebrow">
+                <span class="dot"></span>
+                Plataforma de saúde e bem-estar
+              </div>
+
+              <h1 class="hero-title">
+                Encontre profissionais e agende atendimentos com o
+                <span class="highlight">My Health Hub</span>
+              </h1>
+
+              <p class="hero-subtitle">
+                Uma plataforma simples e moderna para conectar usuários a educadores físicos,
+                visualizar serviços e organizar agendamentos com praticidade.
+              </p>
+
+              <div class="hero-cta">
+                <a href="#" class="btn btn-primary btn-lg" onclick="navigate('professionals'); return false;">
+                  Ver profissionais
+                </a>
+                <a href="#" class="btn btn-outline btn-lg" onclick="navigate('services'); return false;">
+                  Explorar serviços
+                </a>
+              </div>
+
+              <div class="hero-stats">
+                <div>
+                  <div class="hero-stat-num"><em>+6</em></div>
+                  <div class="hero-stat-label">Profissionais em destaque</div>
+                </div>
+                <div>
+                  <div class="hero-stat-num"><em>+9</em></div>
+                  <div class="hero-stat-label">Serviços disponíveis</div>
+                </div>
+                <div>
+                  <div class="hero-stat-num"><em>100%</em></div>
+                  <div class="hero-stat-label">Fluxo demonstrável</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="hero-visual">
+              <div class="hero-card-float">
+                <div class="hero-card-badge">Protótipo MVP</div>
+                <h3 style="font-family:var(--font-display);margin-bottom:10px;">Seu cuidado começa aqui</h3>
+                <p style="color:var(--text-muted);font-size:0.95rem;line-height:1.6;">
+                  Visualize profissionais, escolha serviços e faça agendamentos de forma simples.
+                </p>
+              </div>
+
+              <div class="floating-tag tag-1">💪 Treino Personalizado</div>
+              <div class="floating-tag tag-2">📅 Agendamento Fácil</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROFESSIONALS -->
+    <section id="page-professionals" class="page page-section">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-tag">Profissionais</div>
+          <h2 class="section-title">Encontre o profissional ideal</h2>
+          <p class="section-desc">
+            Explore especialistas disponíveis na plataforma e descubra o atendimento ideal para seu objetivo.
+          </p>
+        </div>
+
+        <div class="search-bar mb-4">
+          <span class="search-icon">🔎</span>
+          <input type="text" id="prof-search" placeholder="Buscar profissional ou especialidade..." />
+        </div>
+
+        <div id="professionals-grid" class="grid-3"></div>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="page-services" class="page page-section">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-tag">Serviços</div>
+          <h2 class="section-title">Serviços oferecidos</h2>
+          <p class="section-desc">
+            Veja os tipos de atendimento disponíveis no My Health Hub.
+          </p>
+        </div>
+
+        <div class="search-bar mb-4">
+          <span class="search-icon">🔎</span>
+          <input type="text" id="svc-search" placeholder="Buscar serviço..." />
+        </div>
+
+        <div id="services-grid" class="grid-3"></div>
+      </div>
+    </section>
+
+    <!-- PROFESSIONAL DETAIL -->
+    <section id="page-prof-detail" class="page page-section">
+      <div class="container" id="prof-detail-content"></div>
+    </section>
+
+    <!-- SCHEDULE -->
+    <section id="page-schedule" class="page page-section">
+      <div id="schedule-content"></div>
+    </section>
+
+    <!-- APPOINTMENTS -->
+    <section id="page-appointments" class="page page-section">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-tag">Agendamentos</div>
+          <h2 class="section-title">Acompanhe seus agendamentos</h2>
+          <p class="section-desc">
+            Visualize sessões futuras e histórico de atendimentos.
+          </p>
+        </div>
+
+        <div id="appointments-content"></div>
+      </div>
+    </section>
+
+    <!-- DASHBOARD -->
+    <section id="page-dashboard" class="page page-section">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-tag">Dashboard</div>
+          <h2 class="section-title">Painel do profissional</h2>
+          <p class="section-desc">
+            Visão resumida dos agendamentos, serviços e indicadores principais.
+          </p>
+        </div>
+
+        <div id="dashboard-content"></div>
+      </div>
+    </section>
+
+    <!-- LOGIN -->
+    <section id="page-login" class="page page-section">
+      <div class="container">
+        <div class="card" style="max-width: 480px; margin: 0 auto;">
+          <div class="card-body">
+            <div class="section-tag">Acesso</div>
+            <h2 class="section-title" style="font-size:1.8rem;">Entrar</h2>
+            <p class="section-desc mb-4">
+              Faça login para acessar seus agendamentos ou seu painel profissional.
+            </p>
+
+            <form onsubmit="handleLogin(event)">
+              <div class="form-group">
+                <label for="login-type">Tipo de acesso</label>
+                <select id="login-type">
+                  <option value="user">Usuário</option>
+                  <option value="professional">Profissional</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="login-email">E-mail</label>
+                <input type="email" id="login-email" placeholder="seuemail@exemplo.com" />
+              </div>
+
+              <div class="form-group">
+                <label for="login-password">Senha</label>
+                <input type="password" id="login-password" placeholder="Digite sua senha" />
+              </div>
+
+              <button type="submit" class="btn btn-primary btn-full">Entrar</button>
+            </form>
+
+            <div class="divider">ou</div>
+
+            <div class="grid-2">
+              <button class="btn btn-outline btn-full" onclick="navigate('register')">Criar conta de usuário</button>
+              <button class="btn btn-ghost btn-full" onclick="navigate('register-pro')">Cadastrar profissional</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- REGISTER USER -->
+    <section id="page-register" class="page page-section">
+      <div class="container">
+        <div class="card" style="max-width: 700px; margin: 0 auto;">
+          <div class="card-body">
+            <div class="section-tag">Cadastro</div>
+            <h2 class="section-title" style="font-size:1.8rem;">Cadastro de usuário</h2>
+            <p class="section-desc mb-4">
+              Preencha seus dados para começar a usar o My Health Hub.
+            </p>
+
+            <form onsubmit="handleRegister(event)">
+              <div class="grid-2">
+                <div class="form-group">
+                  <label for="reg-name">Nome completo</label>
+                  <input type="text" id="reg-name" placeholder="Seu nome" />
+                </div>
+                <div class="form-group">
+                  <label for="reg-email">E-mail</label>
+                  <input type="email" id="reg-email" placeholder="seuemail@exemplo.com" />
+                </div>
+              </div>
+
+              <div class="grid-2">
+                <div class="form-group">
+                  <label for="reg-phone">Telefone</label>
+                  <input type="text" id="reg-phone" placeholder="(14) 99999-9999" />
+                </div>
+                <div class="form-group">
+                  <label for="reg-cpf">CPF</label>
+                  <input type="text" id="reg-cpf" placeholder="000.000.000-00" />
+                </div>
+              </div>
+
+              <div class="grid-2">
+                <div class="form-group">
+                  <label for="reg-birth">Data de nascimento</label>
+                  <input type="date" id="reg-birth" />
+                </div>
+                <div class="form-group">
+                  <label for="reg-goal">Objetivo</label>
+                  <select id="reg-goal">
+                    <option>Emagrecimento</option>
+                    <option>Hipertrofia</option>
+                    <option>Saúde</option>
+                    <option>Condicionamento</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="grid-2">
+                <div class="form-group">
+                  <label for="reg-password">Senha</label>
+                  <input type="password" id="reg-password" placeholder="Crie uma senha" />
+                </div>
+                <div class="form-group">
+                  <label for="reg-level">Nível</label>
+                  <select id="reg-level">
+                    <option>Iniciante</option>
+                    <option>Intermediário</option>
+                    <option>Avançado</option>
+                  </select>
+                </div>
+              </div>
+
+              <button type="submit" class="btn btn-primary btn-full">Criar conta</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- REGISTER PROFESSIONAL -->
+    <section id="page-register-pro" class="page page-section">
+      <div class="container">
+        <div class="card" style="max-width: 700px; margin: 0 auto;">
+          <div class="card-body">
+            <div class="section-tag">Profissional</div>
+            <h2 class="section-title" style="font-size:1.8rem;">Cadastro de profissional</h2>
+            <p class="section-desc mb-4">
+              Crie seu perfil profissional e ofereça seus serviços na plataforma.
+            </p>
+
+            <form onsubmit="handleRegisterPro(event)">
+              <div class="grid-2">
+                <div class="form-group">
+                  <label for="pro-name">Nome completo</label>
+                  <input type="text" id="pro-name" placeholder="Nome do profissional" />
+                </div>
+                <div class="form-group">
+                  <label for="pro-email">E-mail</label>
+                  <input type="email" id="pro-email" placeholder="email@profissional.com" />
+                </div>
+              </div>
+
+              <div class="grid-2">
+                <div class="form-group">
+                  <label for="pro-phone">Telefone</label>
+                  <input type="text" id="pro-phone" placeholder="(14) 99999-9999" />
+                </div>
+                <div class="form-group">
+                  <label for="pro-cref">CREF</label>
+                  <input type="text" id="pro-cref" placeholder="CREF 000000-G/SP" />
+                </div>
+              </div>
+
+              <div class="grid-2">
+                <div class="form-group">
+                  <label for="pro-birth">Data de nascimento</label>
+                  <input type="date" id="pro-birth" />
+                </div>
+                <div class="form-group">
+                  <label for="pro-specialty">Especialidade</label>
+                  <input type="text" id="pro-specialty" placeholder="Ex: Musculação, Funcional..." />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="pro-bio">Descrição profissional</label>
+                <textarea id="pro-bio" placeholder="Fale um pouco sobre sua atuação e metodologia..."></textarea>
+              </div>
+
+              <div class="form-group">
+                <label for="pro-password">Senha</label>
+                <input type="password" id="pro-password" placeholder="Crie uma senha" />
+              </div>
+
+              <button type="submit" class="btn btn-primary btn-full">Criar perfil profissional</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="toast-container" id="toast-container"></div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
