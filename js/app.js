@@ -65,6 +65,7 @@ function renderPage(page) {
     case 'login':        renderLogin();         break;
     case 'register':     renderRegister();      break;
     case 'register-pro': renderRegisterPro();   break;
+    case 'credits':      renderCredits();        break;
   }
 }
 
@@ -720,6 +721,250 @@ async function renderDashboard() {
   } catch (err) {
     setError('dashboard-content', 'Erro ao carregar dashboard');
   }
+}
+
+// ===================== RENDER CREDITS =====================
+function renderCredits() {
+  const container = document.getElementById('page-credits');
+  if (!container) return;
+
+  const members = [
+    { name: 'Andrey Henrique Galbino Silva',     initials: 'AH', variant: '' },
+    { name: 'Carlos Eduardo Rodrigues Silva',     initials: 'CR', variant: 'variant-2' },
+    { name: 'Carlos Eduardo Spacca Lopes',        initials: 'CS', variant: 'variant-3' },
+    { name: 'Daniel Lucarelli Cerri',             initials: 'DL', variant: 'variant-4' },
+    { name: 'Melck Silva de Oliveira Nascimento', initials: 'MS', variant: 'variant-5' },
+    { name: 'Murilo Moretto Marques',             initials: 'MM', variant: 'variant-6' },
+  ];
+
+  const techStack = [
+    { icon: '🟨', label: 'Frontend',  color: 'green',  items: ['HTML5', 'CSS3', 'JavaScript'] },
+    { icon: '⚡', label: 'Backend',   color: 'blue',   items: ['Express.js', 'Node.js'] },
+    { icon: '📊', label: 'Database',  color: 'orange', items: ['MySQL'] },
+    { icon: '🔐', label: 'Segurança', color: 'purple', items: ['JWT', 'bcrypt'] },
+  ];
+
+  container.innerHTML = `
+    <div class="container" style="padding-bottom:80px;">
+
+      <!-- A: CABEÇALHO INSTITUCIONAL -->
+      <div class="fade-in" style="
+        background:linear-gradient(135deg,var(--primary),var(--accent));
+        border-radius:var(--radius-xl);
+        padding:52px 48px;
+        color:white;
+        margin-bottom:28px;
+        position:relative;
+        overflow:hidden;">
+        <div style="position:absolute;inset:0;background:url(&quot;data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.06'%3E%3Ccircle cx='30' cy='30' r='4'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E&quot;);pointer-events:none;"></div>
+
+        <div style="position:relative;z-index:1;">
+          <div style="text-align:center;margin-bottom:44px;">
+            <span style="display:inline-block;background:rgba(255,255,255,0.18);color:white;padding:4px 14px;border-radius:999px;font-size:0.75rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:16px;">Projeto de Extensão</span>
+            <h1 style="font-family:var(--font-display);font-size:clamp(1.5rem,3vw,2.3rem);font-weight:800;color:white;line-height:1.15;margin-bottom:10px;">
+              Projeto de Extensão Fábrica de Software
+            </h1>
+            <p style="color:rgba(255,255,255,0.8);font-size:0.95rem;">Universidade Sagrado Coração · Bauru, SP · 1º Semestre 2026</p>
+          </div>
+
+          <div class="grid-2" style="max-width:640px;margin:0 auto;gap:36px;">
+            <!-- Logo UNISAGRADO -->
+            <div style="display:flex;flex-direction:column;align-items:center;gap:10px;">
+              <span style="font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:rgba(255,255,255,0.8);">Desenvolvimento:</span>
+              <div style="background:rgba(255,255,255,0.96);border-radius:var(--radius-md);padding:16px 24px;display:flex;align-items:center;justify-content:center;min-height:120px;width:100%;">
+                <img src="assets/logo-extensao.jpg" alt="Logo UNISAGRADO"
+                  style="height:88px;max-width:100%;object-fit:contain;"
+                  onerror="this.style.display='none';document.getElementById('cred-uni-fb').style.display='flex'">
+                <div id="cred-uni-fb" style="display:none;flex-direction:column;align-items:center;justify-content:center;text-align:center;">
+                  <div style="font-family:var(--font-display);font-weight:800;font-size:1.3rem;color:var(--primary-dark);">UNISAGRADO</div>
+                  <div style="font-size:0.75rem;color:var(--text-muted);margin-top:4px;">Universidade Sagrado Coração</div>
+                </div>
+              </div>
+            </div>
+            <!-- Logo Coordenadoria de Extensão -->
+            <div style="display:flex;flex-direction:column;align-items:center;gap:10px;">
+              <span style="font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:rgba(255,255,255,0.8);">Apoio:</span>
+              <div style="background:rgba(255,255,255,0.96);border-radius:var(--radius-md);padding:16px 24px;display:flex;align-items:center;justify-content:center;min-height:120px;width:100%;">
+                <img src="assets/logo-unisagrado.png" alt="Logo Coordenadoria de Extensão"
+                  style="height:88px;max-width:100%;object-fit:contain;"
+                  onerror="this.style.display='none';document.getElementById('cred-ext-fb').style.display='flex'">
+                <div id="cred-ext-fb" style="display:none;flex-direction:column;align-items:center;justify-content:center;text-align:center;">
+                  <div style="font-family:var(--font-display);font-weight:800;font-size:1rem;color:var(--accent);">Coordenadoria</div>
+                  <div style="font-family:var(--font-display);font-weight:700;font-size:0.9rem;color:var(--accent);">de Extensão</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- B: INFORMAÇÕES DO PROJETO -->
+      <div class="card fade-in stagger-1" style="margin-bottom:24px;">
+        <div class="card-body">
+          <div class="section-tag">Sobre o Projeto</div>
+          <h2 class="section-title" style="font-size:1.5rem;">Projeto de Extensão Fábrica de Software</h2>
+          <p style="color:var(--text-muted);line-height:1.75;margin-bottom:20px;max-width:none;">
+            Marketplace digital desenvolvido como projeto de extensão universitária que conecta profissionais de educação física a
+            clientes — permitindo busca, comparação e contratação de serviços de saúde e bem-estar em um ambiente centralizado,
+            moderno e acessível. <strong style="color:var(--text-dark);">Tipo: Projeto Web.</strong>
+          </p>
+          <div style="display:flex;flex-wrap:wrap;gap:8px;">
+            <span class="badge badge-green">HTML5</span>
+            <span class="badge badge-green">CSS3</span>
+            <span class="badge badge-green">JavaScript</span>
+            <span class="badge badge-blue">Express.js</span>
+            <span class="badge badge-blue">Node.js</span>
+            <span class="badge badge-orange">MySQL</span>
+            <span class="badge" style="background:#F5F3FF;color:#7C3AED;">JWT</span>
+            <span class="badge" style="background:#F5F3FF;color:#7C3AED;">bcrypt</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- C: ORIGEM & CONCEITO -->
+      <div class="card fade-in stagger-2" style="margin-bottom:24px;background:linear-gradient(145deg,var(--primary-light),var(--accent-light));">
+        <div class="card-body">
+          <div class="section-tag">Origem &amp; Conceito</div>
+          <h2 class="section-title" style="font-size:1.4rem;margin-bottom:24px;">A Ideia por Trás do Projeto</h2>
+          <div class="grid-2" style="gap:20px;">
+            <div class="card fade-in stagger-1">
+              <div class="card-body">
+                <div style="font-size:1.8rem;margin-bottom:10px;">💡</div>
+                <div class="section-tag" style="margin-bottom:8px;">Idealizador</div>
+                <div style="font-family:var(--font-display);font-weight:700;font-size:0.95rem;color:var(--text-dark);margin-bottom:6px;">João Vitor Pereira dos Santos de Paula</div>
+                <p style="font-size:0.84rem;color:var(--text-muted);line-height:1.6;">Concepção original e definição do escopo do projeto</p>
+              </div>
+            </div>
+            <div class="card fade-in stagger-2">
+              <div class="card-body">
+                <div style="font-size:1.8rem;margin-bottom:10px;">🎓</div>
+                <div class="section-tag" style="margin-bottom:8px;">Professor Mentor</div>
+                <div style="font-family:var(--font-display);font-weight:700;font-size:0.95rem;color:var(--text-dark);margin-bottom:6px;">Prof. Daniel Vieira Sant'Anna</div>
+                <p style="font-size:0.84rem;color:var(--text-muted);line-height:1.6;">Orientação no desenvolvimento da ideia e conceituação</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- D: ORIENTAÇÃO & COORDENAÇÃO -->
+      <div class="card fade-in stagger-3" style="margin-bottom:40px;">
+        <div class="card-body">
+          <div style="display:flex;gap:20px;align-items:flex-start;">
+            <span style="font-size:2rem;flex-shrink:0;margin-top:4px;">👨‍🏫</span>
+            <div style="flex:1;">
+              <div class="section-tag" style="margin-bottom:16px;">Coordenação &amp; Orientação</div>
+              <div style="margin-bottom:18px;">
+                <div style="font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--text-muted);margin-bottom:6px;">Professor Coordenador</div>
+                <div style="font-family:var(--font-display);font-weight:700;font-size:1.05rem;color:var(--text-dark);">Prof. Dr. Elvio Gilberto da Silva</div>
+              </div>
+              <div class="divider" style="margin:16px 0;"></div>
+              <div>
+                <div style="font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--text-muted);margin-bottom:10px;">Professores Colaboradores</div>
+                <ul style="list-style:none;display:flex;flex-direction:column;gap:10px;">
+                  <li style="display:flex;align-items:center;gap:10px;">
+                    <span style="width:7px;height:7px;border-radius:50%;background:var(--primary);flex-shrink:0;"></span>
+                    <span style="font-weight:600;font-size:0.95rem;color:var(--text-dark);">Prof. Me. Luis Felipe Grael Tinós</span>
+                  </li>
+                  <li style="display:flex;align-items:center;gap:10px;">
+                    <span style="width:7px;height:7px;border-radius:50%;background:var(--accent);flex-shrink:0;"></span>
+                    <span style="font-weight:600;font-size:0.95rem;color:var(--text-dark);">Profª. Esp. Camila Pellizon Floret</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- E: EQUIPE DE DESENVOLVIMENTO -->
+      <div class="section-header fade-in stagger-4" style="margin-bottom:24px;">
+        <div class="section-tag">Grupo</div>
+        <h2 class="section-title">Equipe de Desenvolvimento</h2>
+      </div>
+      <div class="grid-3" style="margin-bottom:40px;">
+        ${members.map((m, i) => `
+          <div class="card fade-in stagger-${i + 1}" style="overflow:hidden;cursor:default;"
+               onmouseover="this.style.transform='translateY(-3px)';this.style.boxShadow='var(--shadow-md)';this.style.borderColor='var(--primary-mid)'"
+               onmouseout="this.style.transform='';this.style.boxShadow='';this.style.borderColor=''">
+            <div class="prof-card-cover ${m.variant}" style="height:68px;position:relative;border-radius:var(--radius-lg) var(--radius-lg) 0 0;">
+              <div class="prof-avatar" style="width:58px;height:58px;font-size:1.05rem;bottom:-29px;left:20px;">${m.initials}</div>
+            </div>
+            <div class="card-body" style="padding-top:38px;">
+              <div style="font-family:var(--font-display);font-weight:700;font-size:0.93rem;color:var(--text-dark);margin-bottom:8px;line-height:1.35;">${m.name}</div>
+              <span class="badge badge-green">📚 Ciência da Computação</span>
+            </div>
+          </div>
+        `).join('')}
+      </div>
+
+      <!-- F: STACK TECNOLÓGICO -->
+      <div class="section-header fade-in stagger-5" style="margin-bottom:24px;">
+        <div class="section-tag">Stack</div>
+        <h2 class="section-title">Tecnologias Utilizadas</h2>
+      </div>
+      <div class="grid-4" style="margin-bottom:40px;">
+        ${techStack.map((t, i) => `
+          <div class="card fade-in stagger-${i + 1}">
+            <div class="card-body">
+              <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
+                <div class="service-icon ${t.color !== 'purple' ? t.color : ''}" style="${t.color === 'purple' ? 'background:#F5F3FF;' : ''}width:42px;height:42px;font-size:1.1rem;">${t.icon}</div>
+                <span style="font-family:var(--font-display);font-weight:700;font-size:0.9rem;color:var(--text-dark);">${t.label}</span>
+              </div>
+              <div style="display:flex;flex-wrap:wrap;gap:5px;">
+                ${t.items.map(item => `<span class="badge ${t.color !== 'purple' ? `badge-${t.color}` : ''}" ${t.color === 'purple' ? 'style="background:#F5F3FF;color:#7C3AED;"' : ''}>${item}</span>`).join('')}
+              </div>
+            </div>
+          </div>
+        `).join('')}
+      </div>
+
+      <!-- G: AGRADECIMENTOS -->
+      <div class="card fade-in stagger-6">
+        <div class="card-body" style="padding:48px;text-align:center;">
+          <div style="font-size:2.2rem;margin-bottom:14px;">🙏</div>
+          <div class="section-tag" style="justify-content:center;margin-bottom:14px;">Agradecimentos</div>
+          <h2 class="section-title" style="font-size:1.5rem;text-align:center;margin:0 auto 24px;">Muito Obrigado</h2>
+          <div style="max-width:620px;margin:0 auto;display:flex;flex-direction:column;gap:14px;text-align:left;">
+            <p style="color:var(--text-muted);line-height:1.75;font-size:0.95rem;">
+              Este projeto foi desenvolvido no âmbito do <strong style="color:var(--text-dark);">Programa de Extensão Fábrica de Software</strong>,
+              iniciativa que integra o aprendizado acadêmico à prática do desenvolvimento de software real, promovida pela Universidade Sagrado Coração.
+            </p>
+            <p style="color:var(--text-muted);line-height:1.75;font-size:0.95rem;">
+              Agradecemos à <strong style="color:var(--text-dark);">Universidade Sagrado Coração (UNISAGRADO)</strong> e à
+              <strong style="color:var(--text-dark);">Coordenadoria de Extensão</strong> pelo apoio institucional e pela
+              oportunidade de transformar conhecimento em solução com impacto real na comunidade.
+            </p>
+            <p style="color:var(--text-muted);line-height:1.75;font-size:0.95rem;">
+              Este trabalho representa o compromisso da equipe com a educação, a inovação tecnológica e
+              o desenvolvimento de soluções que conectam pessoas a serviços de saúde e bem-estar.
+            </p>
+          </div>
+          <div class="divider" style="margin:32px auto;max-width:620px;"></div>
+          <div style="display:flex;justify-content:center;align-items:center;gap:32px;flex-wrap:wrap;margin-bottom:24px;">
+            <div style="text-align:center;">
+              <div style="font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;color:var(--text-muted);margin-bottom:4px;">Período</div>
+              <div style="font-family:var(--font-display);font-weight:700;font-size:1rem;color:var(--text-dark);">1º Semestre 2026</div>
+            </div>
+            <div style="width:1px;height:36px;background:var(--border);"></div>
+            <div style="text-align:center;">
+              <div style="font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;color:var(--text-muted);margin-bottom:4px;">Localização</div>
+              <div style="font-family:var(--font-display);font-weight:700;font-size:1rem;color:var(--text-dark);">Bauru — SP</div>
+            </div>
+            <div style="width:1px;height:36px;background:var(--border);"></div>
+            <div style="text-align:center;">
+              <div style="font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;color:var(--text-muted);margin-bottom:4px;">Instituição</div>
+              <div style="font-family:var(--font-display);font-weight:700;font-size:1rem;color:var(--text-dark);">UNISAGRADO</div>
+            </div>
+          </div>
+          <p style="font-style:italic;color:var(--text-muted);font-size:0.87rem;max-width:480px;margin:0 auto;">
+            "Desenvolvido com dedicação por estudantes de Ciência da Computação da Universidade Sagrado Coração."
+          </p>
+        </div>
+      </div>
+
+    </div>
+  `;
 }
 
 // ===================== AUTH =====================
